@@ -142,19 +142,90 @@ namespace LinqHotelsExercise
             };
 
 
+            Console.WriteLine("Opgave 1: Viser alle detaljer om Hotellerne i databasen:");
+
             // 1) List full details of all Hotels:
+
+            var Husliste = from h in hotels
+                           select h;
+            foreach (Hotel h in Husliste)
+            {
+                Console.WriteLine(h.ToString());
+            }
+
+            Console.WriteLine("Opgave 2: lister alle detaljer om hoteller i roskilde:");
 
             // 2) List full details of all hotels in Roskilde:
 
+            var LINQListe = from h in hotels
+                            where h.Address.ToString().Contains("Roskilde")
+                            select h;
+            foreach (Hotel h in LINQListe)
+            {
+                Console.WriteLine(h.ToString());
+            }
+
             // 3) List the names of all hotels in Roskilde:
+
+            Console.WriteLine("Opgave 3: lister navnene på alle hoteller i roskilde:");
+
+            var LINQliste2 = from h in hotels
+                             where h.Address.ToString().Contains("Roskilde")
+                             select h;
+            foreach (Hotel h in LINQliste2)
+            {
+                Console.WriteLine(h.Name);
+            }
 
             // 4) List all double rooms with a price below 400 pr night:
 
+            Console.WriteLine("Opgave 4: lister alle dobbel rum med pris under 400 per nat:");
+
+           
+            var LINQliste3 = from r in rooms
+                             where r.Types == 'D' && r.Price < 400
+                             select r;
+
+            foreach (Room r in LINQliste3)
+            {
+                Console.WriteLine(r.ToString());
+            }
+
+            Console.WriteLine("Opgave 5: lister alle familerum med pris under 400 per nat i ascending rækkefølge:");
+
             // 5) List all double or family rooms with a price below 400 pr night in ascending order of price:
+
+            var LINQliste4 = from r in rooms
+                             where r.Types == 'F' && r.Price < 400
+                             orderby r.Price ascending
+                             select r;
+
+            foreach (Room r in LINQliste4)
+            {
+                Console.WriteLine(r.ToString());
+            }
+
 
             // 6) List all hotels that starts with 'P':
 
+            Console.WriteLine("Opgave 6: lister alle hoteller som starter med p:");
+
+            var LINQliste5 = from h in hotels
+                             where h.Name.StartsWith("P")
+                             select h;
+            foreach (var h in LINQliste5)
+            {
+                Console.WriteLine(h.ToString());
+            }
+
+                             
+
+
             // 7) List the number of hotels:
+
+            Console.WriteLine("Opgave 7: lister alle hoteller");
+
+            Console.WriteLine(hotels.Count);
 
             // 8) List the number of hotels in Roskilde:
 
